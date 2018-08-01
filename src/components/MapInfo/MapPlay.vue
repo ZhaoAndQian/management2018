@@ -1,6 +1,11 @@
 <template>
- <div id="map" :style="mapStyle">
- </div>
+<el-row style="margin:-20px">
+  <el-col :span="24">
+  <div id="map" :style="mapStyle">
+
+  </div>
+  </el-col>
+</el-row>
 </template>
 
 <script>
@@ -8,9 +13,8 @@ import map from '../../../static/js/higisHelper.js'
 let _this
 export default {
   created: function () {
-    let height = document.body.clientHeight - 64
-    let width = document.body.clientWidth - 205
-    this.mapStyle = 'position: absolute; margin: -18px; height: ' + height + 'px; width:' + width + 'px'
+    let height = document.body.clientHeight - 62
+    this.mapStyle = ' height: ' + height + 'px; width:100%'
   },
   mounted: function () {
     _this = this

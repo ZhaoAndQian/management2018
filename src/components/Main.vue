@@ -15,14 +15,15 @@
     <div style="margin-left: 23px;">
       <i v-bind:class="openClass" style="" @click="triggerOpen"></i>
     </div>
-    <el-menu style="border: 0px" :collapse="isCollapse" router>
+    <el-menu style="border: 0px" :collapse="isCollapse" router default-active="Frist" ref="menus">
+      <el-menu-item index="Frist"><i class="el-icon-bell"></i><span slot="title">首页</span></el-menu-item>
       <el-submenu :index="item.permissonSeq+''" v-for="item in menuData" :key="item.id">
         <template slot="title"><i :class="item.icon" v-if="item.icon"></i><span slot="title">{{item.permissonName}}</span></template>
           <el-menu-item :index="'/'+child.routerName" v-for="child in item.childrens" :key="child.id">{{child.permissonName}}</el-menu-item>
       </el-submenu>
     </el-menu>
   </el-aside>
-    <el-main style="margin: 0px; border-left: 1px solid #eee">
+    <el-main style="margin: 0px; border-left: 1px solid #eee;">
       <router-view/>
     </el-main>
   </el-container>
@@ -47,6 +48,7 @@ export default {
     let viewName = getCookie(userInfoName)
     this.viewName = viewName
     _this.searchMenu()
+    this.$router.push({name: 'Frist'})
   },
   methods: {
     searchMenu: () => {

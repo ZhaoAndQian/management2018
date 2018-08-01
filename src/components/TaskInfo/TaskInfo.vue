@@ -146,7 +146,7 @@
         </video>
       </el-col>
     </el-row>
-  </el-dialog> 
+  </el-dialog>
   </div>
 </template>
 
@@ -169,12 +169,6 @@ export default {
     _this.searchClick()
   },
   methods: {
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
     playVideo (row, event, column) {
       _this.currentVideoUrl = videoServiceUrl + row.videoPath
     },

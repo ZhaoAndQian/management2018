@@ -36,6 +36,7 @@ import UserPwd from '@/components/UserInfo/UserPwd'
 import EventImg from '@/components/TaskInfo/EventImg'
 import EventVideo from '@/components/TaskInfo/EventVideo'
 import MapPlay from '@/components/MapInfo/MapPlay'
+import Frist from '@/components/FristView'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export default new Router({
       name: 'Main',
       component: Main,
       children: [
+        {
+          path : '/frist',
+          name: 'Frist',
+          component: Frist
+        },
         {
           path: '/mapPlay',
           name: 'MapPlay',
