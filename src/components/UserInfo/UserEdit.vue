@@ -5,7 +5,9 @@
     <el-input v-model="form.loginName"></el-input>
   </el-form-item>
   <el-form-item label="密码" prop="loginPwd">
-    <el-input type="password" v-model="form.loginPwd"></el-input>
+    <el-input :type="passType" v-model="form.loginPwd">
+      <i slot="suffix" class="el-icon-view" @click="queryPwd" v-show="isAdd"></i>
+    </el-input>
   </el-form-item>
   <el-form-item label="姓名" prop="realName">
     <el-input v-model="form.realName"></el-input>
@@ -64,6 +66,7 @@ export default {
   },
   data () {
     return {
+      passType: 'password',
       isAdd: false,
       rules: {
         unitTableId: [{required: true, message: '请选择单位', trigger: 'change'}],
@@ -79,6 +82,13 @@ export default {
     }
   },
   methods: {
+    queryPwd () {
+      if (_this.passType === 'password') {
+        _this.passType = 'text'
+      } else {
+        _this.passType = 'password'
+      }
+    },
     cancle () {
       _this.$router.push({name: 'UserInfo'})
     },

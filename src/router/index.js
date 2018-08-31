@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login.vue'
-import DataPlay from '@/components/DataPlay'
+import FireInfo from '@/components/FirePrevention/FireInfo'
 import CameraInfo from '@/components/EquipmentInfo/CameraInfo'
 import CameraEdit from '@/components/EquipmentInfo/CameraEdit'
 import PlaneInfo from '@/components/EquipmentInfo/PlaneInfo'
@@ -53,7 +53,7 @@ export default new Router({
       component: Main,
       children: [
         {
-          path : '/frist',
+          path: '/frist',
           name: 'Frist',
           component: Frist
         },
@@ -88,9 +88,9 @@ export default new Router({
           component: PowerRole
         },
         {
-          path: '/dataPlay',
-          name: 'DataPlay',
-          component: DataPlay
+          path: '/fireInfo',
+          name: 'FireInfo',
+          component: FireInfo
         },
         {
           path: '/cameraInfo',

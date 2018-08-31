@@ -1,6 +1,6 @@
 <template>
 <div>
-<el-upload
+<!-- <el-upload
 ref="upload"
 :on-success="upSuccess"
 :on-error="upError"
@@ -10,16 +10,25 @@ ref="upload"
   :on-preview="getImgClick"
   :before-remove="removeClick">
   <i class="el-icon-plus"></i>
-</el-upload>
+</el-upload> -->
 
 <el-dialog :visible.sync="dialogVisible">
   <img width="100%" :src="dialogImageUrl" alt="">
 </el-dialog>
-  <el-carousel v-show="images.length>0" class="fl" :autoplay="false" arrow="always" :height="carHeight">
+
+<el-row :gutter="10">
+  <el-col :span="6" v-for="item in images" :key="item.id">
+    <el-card shadow="always" style="width:100%;padding:0px;margin-top: 10px;">
+      <img :src="imgUrl+item.imgPath" ref="img" :style="imgStyle" @click="bigImgPlay(imgUrl+item.imgPath)">
+    </el-card>
+  </el-col>
+</el-row>
+
+  <!-- <el-carousel v-show="images.length>0" class="fl" :autoplay="false" arrow="always" :height="carHeight">
     <el-carousel-item v-for="item in images" :key="item.id" style="height: 100%">
       <img :src="imgUrl+item.imgPath" alt="" style="width:auto;height:auto;max-width:100%;max-height:100%">
     </el-carousel-item>
-  </el-carousel>
+  </el-carousel> -->
 </div>
 </template>
 <script>
@@ -27,8 +36,8 @@ import { imgServiceUrl, baseUrl } from '../../../static/js/common.js'
 let _this
 export default {
   created: function () {
-    let height = document.body.clientHeight
-    this.carHeight = (height - 60 - 150 - 50) + 'px'
+    // let height = document.body.clientHeight
+    // this.carHeight = (height - 60 - 150 - 50) + 'px'
   },
   mounted () {
     _this = this
@@ -39,9 +48,14 @@ export default {
     _this.hearder = {Authorization: _this.axios.defaults.headers.common['Authorization']}
     _this.eventId = _id.id
     _this.searchClick()
+    _this.setImgHeight()
+    window.onresize = function () {
+      _this.setImgHeight()
+    }
   },
   data () {
     return {
+      imgStyle: '',
       carHeight: '',
       fileUrl: '',
       imgUrl: '',
@@ -53,6 +67,22 @@ export default {
     }
   },
   methods: {
+    setImgHeight () {
+      let width = document.body.clientWidth
+      if (width <= 1200) {
+        // 150
+        _this.imgStyle = 'width:auto;height:' + 150 + 'px;max-width:100%;max-height:500px;cursor:pointer'
+      } else if (width > 1200 && width <= 1500) {
+        // 180
+        _this.imgStyle = 'width:auto;height:' + 180 + 'px;max-width:100%;max-height:500px;cursor:pointer'
+      } else if (width > 1500 && width <= 1650) {
+        // 200
+        _this.imgStyle = 'width:auto;height:' + 200 + 'px;max-width:100%;max-height:500px;cursor:pointer'
+      } else {
+        // 280
+        _this.imgStyle = 'width:auto;height:' + 280 + 'px;max-width:100%;max-height:500px;cursor:pointer'
+      }
+    },
     searchClick () {
       _this.axios.get('/EventImg/select/' + _this.eventId).then((response) => {
         let data = response.data
@@ -86,6 +116,10 @@ export default {
     },
     getImgClick (file) {
       this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    bigImgPlay (url) {
+      this.dialogImageUrl = url
       this.dialogVisible = true
     }
   }

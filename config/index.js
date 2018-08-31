@@ -6,12 +6,25 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/getpoints': {
+        target: 'http://yingyan.baidu.com/api/v3/track/gettrack',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/getpoints': ''
+        }
+      },
+      '/addpoint': {
+        target: 'http://yingyan.baidu.com/api/v3/track/addpoint',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/addpoint': ''
+        }
+      }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

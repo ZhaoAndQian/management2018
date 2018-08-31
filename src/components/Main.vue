@@ -12,7 +12,7 @@
     </el-header>
   <el-container>
     <el-aside width="220px;">
-    <div style="margin-left: 23px;">
+    <div style="margin-left:23px;">
       <i v-bind:class="openClass" style="" @click="triggerOpen"></i>
     </div>
     <el-menu style="border: 0px" :collapse="isCollapse" router default-active="Frist" ref="menus">

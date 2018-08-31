@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     show () {
-      alert(123213)
+      // alert(123213)
     },
     getCameraData () {
       _this.axios.get('/Camera/selectall').then((response) => {

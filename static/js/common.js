@@ -1,3 +1,9 @@
+//请求的url类型{0 后台数据接口，1 百度接口地址}
+export const apiType = {server: 0, baidu: 1}
+
+//绘制类型
+export const drawTypes = [{name: '无', value:'None'}, {name: '点', value: 'Point'}, {name: '线', value: 'LineString'}, {name: '面', value: 'Polygon'}, {name: '圆', value: 'Circle'}]
+
 /**
  * @summary 设置cookie
  * @param {string} name cookie名称
@@ -112,5 +118,7 @@ export default {
   baseUrl,
   imgServiceUrl,
   videoServiceUrl,
-  getPlayer
+  getPlayer,
+  apiType,
+  drawTypes
 }
